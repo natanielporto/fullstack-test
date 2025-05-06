@@ -1,0 +1,44 @@
+# Environment
+.env
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# Build
+dist/
+build/
+.out/
+coverage/
+.turbo/
+.next/
+.cache/
+.esbuild/
+*.tsbuildinfo
+
+# Tests
+coverage/
+jest-report/
+*.log
+*.test.ts.snap
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# SO
+*.pid
+*.seed
+*.pid.lock
