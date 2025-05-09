@@ -1,0 +1,5 @@
+{
+  "name": "@mosano-test-fullstack/eslint-config",
+  "version": "1.0.0",
+  "main": "eslint.config.js"
+}

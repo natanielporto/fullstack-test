@@ -1,0 +1,6 @@
+{
+  "name": "@mosano-test-fullstack/tsconfig",
+  "version": "1.0.0",
+  "main": "tsconfig.base.json",
+  "private": true
+}

@@ -3,10 +3,10 @@
 import { useCallback, useMemo } from "react";
 import { Input } from "./Input";
 import { Select } from "./Select";
-import { useGlobalContext } from "@/context/globalContext";
+import { useGlobalContext } from "../context/globalContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema, FormData } from "@/zodSchema/formSchema";
+import { userSchema, UserSchema } from "@mosano-test-fullstack/schemas";
 
 export const LeftSection = () => {
   const { name, country, birthday } = useGlobalContext();
@@ -16,8 +16,8 @@ export const LeftSection = () => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+  } = useForm<UserSchema>({
+    resolver: zodResolver(userSchema),
   });
 
   const onSubmit = (data: FormData) => {

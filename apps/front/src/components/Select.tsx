@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetCountries } from "@/hooks/useGetCountries";
+import { useGetCountries } from "../hooks/useGetCountries";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface SelectProps {
