@@ -32,11 +32,13 @@
   "lint-staged": {
     "apps/front/**/*.{js,jsx,ts,tsx}": [
       "eslint apps/front/src --fix",
-      "npm run test --workspace=front -- --bail --findRelatedTests"
+      "npm run test --workspace=front -- --bail --findRelatedTests",
+      "npm run check-types --workspace=front"
     ],
     "apps/back/**/*.ts": [
       "eslint apps/back/src --fix",
-      "npm run test --workspace=back -- --bail --findRelatedTests"
+      "npm run test --workspace=back -- --bail --findRelatedTests",
+      "npm run check-types --workspace=back"
     ],
     "**/*.{json,md,css}": [
       "prettier --write"
