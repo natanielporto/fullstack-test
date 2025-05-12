@@ -31,11 +31,15 @@
       }
     },
     "lint-staged": {
-      "*.{js,ts,tsx}": [
-        "eslint --fix",
-        "npm run test -- --bail --findRelatedTests"
+      "apps/front/**/*.{js,jsx,ts,tsx}": [
+        "npx next lint --fix",
+        "npm run test --workspace=front -- --bail --findRelatedTests"
       ],
-      "*.{json,md,css}": [
+      "apps/back/**/*.ts": [
+        "eslint --fix --cwd apps/back",
+        "npm run test --workspace=back --cwd apps/back"
+      ],
+      "**/*.{json,md,css}": [
         "prettier --write"
       ]
     }
