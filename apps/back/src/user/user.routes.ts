@@ -11,8 +11,8 @@ router
 
 router
   .route("/:id")
+  .get(asyncHandler(UserController.getUser))
   .put(asyncHandler(UserController.updateUser))
-  .patch(asyncHandler(UserController.patchUser))
   .delete(asyncHandler(UserController.deleteUser));
 
 export default router;

@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "@mosano-test-fullstack/schemas": "*",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "mongoose": "^8.14.1",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@mosano-test-fullstack/eslint-config": "^1.0.0",
+    "@types/cors": "^2.8.18",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.14",

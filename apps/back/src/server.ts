@@ -2,10 +2,20 @@ import express, { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoutes from "./user/user.routes";
+import cors from "cors";
 
 dotenv.config();
 
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_USER = process.env.MONGO_USER;
+const MONGO_PASS = process.env.MONGO_PASS;
+const MONGO_DB = process.env.MONGO_DB;
+
+if (!MONGO_USER || !MONGO_PASS) {
+  throw new Error("MONGO_USER or MONGO_PASS is not defined in the .env file");
+}
+
+const MONGO_URI = `mongodb://${MONGO_USER}:${MONGO_PASS}@localhost:27017/${MONGO_DB}?authSource=admin`;
+
 const PORT = process.env.PORT || 3000;
 
 if (!MONGO_URI) {
@@ -14,6 +24,13 @@ if (!MONGO_URI) {
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use("/users", userRoutes);
 

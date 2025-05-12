@@ -9,6 +9,10 @@ export function findAllUsers(): Promise<UserPersistence[]> {
   return User.find();
 }
 
+export function findUser(id: string): Promise<UserPersistence | null> {
+  return User.findById(id);
+}
+
 export function updateUser(
   id: string,
   data: Partial<UserSchema>

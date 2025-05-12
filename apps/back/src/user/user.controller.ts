@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { userSchema, userUpdateSchema } from "@mosano-test-fullstack/schemas";
+import { userSchema } from "@mosano-test-fullstack/schemas";
+// import { userSchema, userUpdateSchema } from "@mosano-test-fullstack/schemas";
 import * as UserRepository from "./user.repository";
 
 export async function createUser(req: Request, res: Response) {
@@ -23,11 +24,13 @@ export async function updateUser(req: Request, res: Response) {
   return res.json(user);
 }
 
-export async function patchUser(req: Request, res: Response) {
-  const result = userUpdateSchema.safeParse(req.body);
-  if (!result.success) return res.status(400).json(result.error.format());
+export async function getUser(req: Request, res: Response) {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).json({ error: "Missing user ID" });
+  }
 
-  const user = await UserRepository.updateUser(req.params.id, result.data);
+  const user = await UserRepository.findUser(id);
   return res.json(user);
 }
 

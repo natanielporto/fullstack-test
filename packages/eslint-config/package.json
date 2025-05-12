@@ -1,5 +1,8 @@
 {
   "name": "@mosano-test-fullstack/eslint-config",
   "version": "1.0.0",
-  "main": "eslint.config.js"
+  "main": "eslint.config.js",
+  "devDependencies": {
+    "eslint-plugin-simple-import-sort": "^12.1.1"
+  }
 }

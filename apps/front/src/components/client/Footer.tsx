@@ -1,6 +1,6 @@
 "use client";
 
-import { useGlobalContext } from "../context/globalContext";
+import { useGlobalContext } from "../../context/globalContext";
 
 export const Footer = () => {
   const { name, surname } = useGlobalContext();
