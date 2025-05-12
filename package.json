@@ -24,24 +24,22 @@
     "apps/*",
     "packages/*"
   ],
-  "config": {
-    "husky": {
-      "hooks": {
-        "pre-commit": "npx lint-staged"
-      }
-    },
-    "lint-staged": {
-      "apps/front/**/*.{js,jsx,ts,tsx}": [
-        "npx next lint --fix",
-        "npm run test --workspace=front -- --bail --findRelatedTests"
-      ],
-      "apps/back/**/*.ts": [
-        "eslint --fix --cwd apps/back",
-        "npm run test --workspace=back --cwd apps/back"
-      ],
-      "**/*.{json,md,css}": [
-        "prettier --write"
-      ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
     }
+  },
+  "lint-staged": {
+    "apps/front/**/*.{js,jsx,ts,tsx}": [
+      "eslint apps/front/src --fix",
+      "npm run test --workspace=front -- --bail --findRelatedTests"
+    ],
+    "apps/back/**/*.ts": [
+      "eslint apps/back/src --fix",
+      "npm run test --workspace=back -- --bail --findRelatedTests"
+    ],
+    "**/*.{json,md,css}": [
+      "prettier --write"
+    ]
   }
 }
