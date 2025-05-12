@@ -1,12 +1,14 @@
 "use client";
 
-import { editUser } from "@/actions/editUser";
-import { getUser } from "@/actions/getUser";
-import { useGlobalContext } from "@/context/globalContext";
 import { Pencil } from "lucide-react";
 
+// import { editUser } from "@/actions/editUser";
+// import { getUser } from "@/actions/getUser";
+import { useGlobalContext } from "@/context/globalContext";
+
 export const EditButton = ({ userId }: { userId: string }) => {
-  const { users, name, surname, country, birthday } = useGlobalContext();
+  const { users } = useGlobalContext();
+  // const { users, name, surname, country, birthday } = useGlobalContext();
 
   const handleEdit = async () => {
     if (confirm("Are you sure you want to change the infos of this user?")) {

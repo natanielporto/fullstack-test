@@ -2,8 +2,9 @@
   "name": "back",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "tsx watch src/server.ts",
     "test": "jest"
   },
   "keywords": [],
@@ -19,7 +20,7 @@
     "zod": "^3.24.4"
   },
   "devDependencies": {
-    "@mosano-test-fullstack/eslint-config": "^1.0.0",
+    "@mosano-test-fullstack/eslint-config": "*",
     "@types/cors": "^2.8.18",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.14",

@@ -1,11 +1,12 @@
 "use client";
 
-import { Input } from "./Input";
-import { useGlobalContext } from "../../context/globalContext";
 import { createUser } from "@/actions/createUser";
 import { CountryProps } from "@/actions/getCountries";
-import { Select } from "./Select";
 import { calculateAge } from "@/helpers/calculateAge";
+
+import { useGlobalContext } from "../../context/globalContext";
+import { Input } from "./Input";
+import { Select } from "./Select";
 
 interface LeftSectionClientProps {
   countries: CountryProps[];
@@ -13,7 +14,7 @@ interface LeftSectionClientProps {
 
 export const LeftSectionClient = ({ countries }: LeftSectionClientProps) => {
   const {
-    users,
+    // users,
     name,
     setName,
     surname,

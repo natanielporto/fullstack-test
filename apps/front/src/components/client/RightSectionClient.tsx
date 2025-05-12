@@ -1,10 +1,12 @@
 "use client";
 
-import { EditButton } from "@/components/client/EditButton";
-import { PersonProps } from "@/interfaces/PersonProps";
-import { DeleteButton } from "./DeleteButton";
-import { useGlobalContext } from "@/context/globalContext";
 import { useEffect } from "react";
+
+import { EditButton } from "@/components/client/EditButton";
+import { useGlobalContext } from "@/context/globalContext";
+import { PersonProps } from "@/interfaces/PersonProps";
+
+import { DeleteButton } from "./DeleteButton";
 
 interface RightSectionClientProps {
   users: PersonProps[];

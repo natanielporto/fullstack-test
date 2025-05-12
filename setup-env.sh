@@ -1,17 +1,35 @@
-#!/bin/bash
-if ! corepack --version &>/dev/null; then
-  corepack enable
-fi
+#!/usr/bin/env bash
+set -euo pipefail
 
-NPM_VERSION=$(jq -r '.packageManager' package.json | grep -oP 'npm@\K[\d\.]+')
+ROOT_PACKAGE_JSON="package.json"
 
-if [ -z "$NPM_VERSION" ]; then
-  echo "MPM version not specified in package.json. Exiting."
+if [ ! -f "$ROOT_PACKAGE_JSON" ]; then
+  echo "Root package.json not found. Exiting."
   exit 1
 fi
 
-corepack prepare "npm@$NPM_VERSION" --activate
+PACKAGE_MANAGER=$(jq -r '.packageManager // empty' "$ROOT_PACKAGE_JSON")
 
-echo "NPM version: $(npm --version)"
-echo "Node version: $(node --version)"
-echo "Environment setup complete"
+if [[ -z "$PACKAGE_MANAGER" ]]; then
+  echo "packageManager not specified in root package.json. Exiting."
+  exit 1
+fi
+
+IFS="@" read -r MANAGER VERSION <<< "$PACKAGE_MANAGER"
+
+if [[ "$MANAGER" != "npm" ]]; then
+  echo "Only npm is supported for now. Found: $MANAGER. Exiting."
+  exit 1
+fi
+
+if ! command -v corepack >/dev/null 2>&1; then
+  echo "Corepack is not installed. Trying to enable via Node.js."
+fi
+
+echo "Enabling corepack..."
+corepack enable || true
+
+echo "Ensuring npm@$VERSION is enabled..."
+corepack prepare "npm@$VERSION" --activate
+
+echo "npm $VERSION activated with corepack"

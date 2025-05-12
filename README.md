@@ -14,6 +14,7 @@ To install all dependencies across all apps and packages:
 
 ```bash
 npm install
+npm install --workspaces
 ```
 
 This will install everything into the root node_modules, using workspace symlinks.

@@ -1,8 +1,9 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { CreateUserResponse } from "./createUser";
 import { userSchema } from "@mosano-test-fullstack/schemas";
+import { revalidatePath } from "next/cache";
+
+import { CreateUserResponse } from "./createUser";
 
 type EditUserProps = {
   userId: string;

@@ -1,5 +1,6 @@
 "use client";
 import { X } from "lucide-react";
+
 import { deleteUser } from "@/actions/deleteUser";
 
 export const DeleteButton = ({ userId }: { userId: string }) => {
