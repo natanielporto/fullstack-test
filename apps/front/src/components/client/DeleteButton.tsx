@@ -1,21 +1,16 @@
 "use client";
+
 import { X } from "lucide-react";
 
-import { deleteUser } from "@/actions/deleteUser";
+import { useDeleteUser } from "@/hooks/useDeleteUser";
 
 export const DeleteButton = ({ userId }: { userId: string }) => {
-  const handleDelete = async () => {
-    if (confirm("Are you sure you want to delete this user?")) {
-      return await deleteUser(userId);
-    }
-
-    return;
-  };
+  const handleDelete = useDeleteUser();
 
   return (
     <button
       type="submit"
-      onClick={handleDelete}
+      onClick={() => handleDelete(userId)}
       className="p-2 rounded hover:bg-red-600 hover:text-white focus:outline-none"
       aria-label="Delete user"
     >

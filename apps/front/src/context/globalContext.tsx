@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, ReactNode,useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 type User = {
   _id?: string;
@@ -13,6 +13,8 @@ type User = {
 type GlobalContextType = {
   users: User[];
   setUsers: (users: User[]) => void;
+  id: string;
+  setId: (name: string) => void;
   name: string;
   setName: (name: string) => void;
   surname: string;
@@ -27,6 +29,7 @@ const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [users, setUsers] = useState<User[]>([]);
+  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [country, setCountry] = useState("");
@@ -37,6 +40,8 @@ export const Provider = ({ children }: { children: ReactNode }) => {
       value={{
         users,
         setUsers,
+        id,
+        setId,
         name,
         setName,
         surname,

@@ -5,16 +5,17 @@ import { revalidatePath } from "next/cache";
 
 import { CreateUserResponse } from "./createUser";
 
-type EditUserProps = {
+type UpdateUserProps = {
   userId: string;
   formData: FormData;
 };
 
-export async function editUser({
+export async function updateUser({
   userId,
   formData,
-}: EditUserProps): Promise<CreateUserResponse> {
+}: UpdateUserProps): Promise<CreateUserResponse> {
   const rawData = {
+    id: userId || "",
     name: formData.get("name")?.toString() || "",
     surname: formData.get("surname")?.toString() || "",
     country: formData.get("country")?.toString() || "",

@@ -1,8 +1,10 @@
-import express, { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
-import userRoutes from "./user/user.routes";
 import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+
+import { errorHandler } from "./middlewares/errorHandler.js";
+import userRoutes from "./user/user.routes.js";
 
 dotenv.config();
 
@@ -33,11 +35,7 @@ app.use(
 );
 app.use(express.json());
 app.use("/users", userRoutes);
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error("Internal Server Error:", err);
-  res.status(500).json({ message: "Internal server error" });
-});
+app.use(errorHandler);
 
 async function startServer() {
   try {

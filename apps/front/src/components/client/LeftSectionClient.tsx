@@ -2,6 +2,7 @@
 
 import { createUser } from "@/actions/createUser";
 import { CountryProps } from "@/actions/getCountries";
+import { updateUser } from "@/actions/updateUser";
 import { calculateAge } from "@/helpers/calculateAge";
 
 import { useGlobalContext } from "../../context/globalContext";
@@ -14,7 +15,8 @@ interface LeftSectionClientProps {
 
 export const LeftSectionClient = ({ countries }: LeftSectionClientProps) => {
   const {
-    // users,
+    id,
+    setId,
     name,
     setName,
     surname,
@@ -29,14 +31,21 @@ export const LeftSectionClient = ({ countries }: LeftSectionClientProps) => {
   const [month, day] = splitBirthday;
 
   const handleSubmit = async (formData: FormData) => {
-    const result = await createUser(formData);
+    let result;
+
+    result =
+      id !== ""
+        ? await updateUser({ userId: id, formData })
+        : await createUser(formData);
+
     if (result?.success) {
+      setId("");
       setName("");
       setSurname("");
-      setCountry("");
+      setCountry("Select a country");
       setBirthday("");
     } else {
-      console.log("Validation Errors:", result.errors);
+      return console.log("Validation Errors:", result.errors);
     }
   };
 

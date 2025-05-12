@@ -1,5 +1,6 @@
-import { User, UserPersistence } from "./user.model";
 import { UserSchema } from "@mosano-test-fullstack/schemas";
+
+import { User, UserPersistence } from "./user.model.js";
 
 export function createUser(data: UserSchema): Promise<UserPersistence> {
   return User.create(data);

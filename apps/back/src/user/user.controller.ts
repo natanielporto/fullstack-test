@@ -1,7 +1,6 @@
 import { userSchema } from "@mosano-test-fullstack/schemas";
 import { Request, Response } from "express";
 
-// import { userSchema, userUpdateSchema } from "@mosano-test-fullstack/schemas";
 import * as UserRepository from "./user.repository.js";
 
 export async function createUser(req: Request, res: Response) {
