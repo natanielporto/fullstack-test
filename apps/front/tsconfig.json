@@ -3,26 +3,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
+      "@/*": ["./src/*"],
       "@mosano-test-fullstack/vitest-config": [
         "../../packages/vitest-config/vitest.config.ts"
       ]
     },
-    "types": [
-      "vitest/globals",
-      "@testing-library/jest-dom"
-    ],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "module": "esnext",
     "jsx": "preserve"
   },
-  "include": [
-    "src/**/*",
-    ".next/types/**/*.ts",
-    "src/types/global.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*", ".next/types/**/*.ts", "src/types/global.d.ts"],
+  "exclude": ["node_modules"]
 }

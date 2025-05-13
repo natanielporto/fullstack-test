@@ -5,7 +5,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2022",
-    "rootDir": ".",
+    "rootDir": "./",
     "outDir": "./dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -14,14 +14,12 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mosano-test-fullstack/*": ["../../packages/*/dist"],
-      "@mosano-test-fullstack/vitest-config": [
-        "../../packages/vitest-config/vitest.config.ts"
-      ]
+      "@mosano-test-fullstack/vitest-config": ["packages/vitest-config"],
+      "@/*": ["apps/back/src/*"]
     },
     "declaration": true,
     "declarationMap": true
   },
-  "include": ["src/**/*.ts", "**/*.test.ts", "vitest.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts", "vitest.config.ts", "vitest.setup.ts"],
+  "exclude": ["node_modules"]
 }

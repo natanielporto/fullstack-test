@@ -39,16 +39,16 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "npx lint-staged"
+      "pre-commit": "echo '--- Iniciando pre-commit ---' && npx lint-staged && echo '--- Finalizando pre-commit ---'"
     }
   },
   "lint-staged": {
     "apps/front/src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --config apps/front/eslint.config.js --fix"
+      "echo 'Linting Frontend...' && eslint --config apps/front/eslint.config.js --fix"
     ],
     "apps/back/**/*.ts": [
-      "eslint --config apps/back/eslint.config.js --fix",
-      "npm run test --workspace=back --cwd apps/back"
+      "echo 'Linting Backend...' && eslint --config apps/back/eslint.config.js --fix",
+      "echo 'Rodando testes do Backend...' && npm run test --workspace=back --cwd apps/back"
     ],
     "**/*.{json,md,css}": [
       "prettier --write"

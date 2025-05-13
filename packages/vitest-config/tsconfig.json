@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "declaration": true,
     "module": "NodeNext",
-    "target": "ESNext",
     "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true,
+    "strict": true,
     "esModuleInterop": true,
-    "strict": true
+    "target": "ES2022"
   },
   "include": ["index.ts", "vitest.config.ts"]
 }
