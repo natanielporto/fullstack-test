@@ -2,6 +2,18 @@
 
 import { revalidatePath } from "next/cache";
 
+export type CreateUserResponse = {
+  success: boolean;
+  data?: {
+    id: string;
+    name: string;
+    surname: string;
+    country: string;
+    birthday: string;
+  };
+  errors?: Record<string, string[]>;
+};
+
 export async function createUser(formData: FormData) {
   try {
     const name = formData.get("name") as string;
