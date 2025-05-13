@@ -48,7 +48,7 @@
     ],
     "apps/back/**/*.ts": [
       "echo 'Linting Backend...' && eslint --config apps/back/eslint.config.js --fix",
-      "echo 'Rodando testes do Backend...' && npm run test --workspace=back --cwd apps/back"
+      "sh -c 'echo \"Rodando testes do Backend (SHELL SCRIPT)...\"; cd apps/back && npm run test --workspace=back'"
     ],
     "**/*.{json,md,css}": [
       "prettier --write"
