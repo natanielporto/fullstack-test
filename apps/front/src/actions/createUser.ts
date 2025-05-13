@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 export type CreateUserResponse = {
   success: boolean;
   data?: {
-    id: string;
+    id?: string;
     name: string;
     surname: string;
     country: string;
