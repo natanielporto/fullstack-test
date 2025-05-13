@@ -4,7 +4,17 @@ export const calculateAge = (birthday: string): number => {
   const day = parseInt(dayStr, 10);
   const year = parseInt(yearStr, 10);
 
-  if (isNaN(month) || isNaN(day) || isNaN(year)) return 0;
+  if (
+    isNaN(month) ||
+    isNaN(day) ||
+    isNaN(year) ||
+    month < 1 ||
+    month > 12 ||
+    day < 1 ||
+    day > 31
+  ) {
+    return 0;
+  }
 
   const birthDate = new Date(year, month - 1, day);
   const today = new Date();
