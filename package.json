@@ -10,24 +10,24 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "test:front": "npm run test --workspace=front",
-    "test:back": "npm run test --workspace=back",
+    "build:vitest-config": "npm run build --workspace=@mosano-test-fullstack/vitest-config",
+    "test:front": "npm run build:vitest-config && npm run test --workspace=front",
+    "test:back": "npm run build:vitest-config && npm run test --workspace=back",
     "test": "npm run test:front && npm run test:back"
   },
   "devDependencies": {
-    "@eslint/js": "^9.26.0",
     "@eslint/json": "^0.12.0",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
+    "@vitest/ui": "3.1.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
-    "tsx": "^4.19.4",
     "turbo": "^2.5.3",
     "typescript": "5.8.2",
-    "typescript-eslint": "^8.32.1"
+    "vitest": "3.1.3"
   },
   "engines": {
     "node": ">=22"

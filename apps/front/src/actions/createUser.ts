@@ -1,38 +1,38 @@
 "use server";
 
-import { UserSchema, userSchema } from "@mosano-test-fullstack/schemas";
 import { revalidatePath } from "next/cache";
 
-export type CreateUserResponse =
-  | {
-      success: true;
-      data: UserSchema;
+export async function createUser(formData: FormData) {
+  try {
+    const name = formData.get("name") as string;
+    const surname = formData.get("surname") as string;
+    const country = formData.get("country") as string;
+    const birthday = formData.get("birthday") as string;
+
+    if (!name) {
+      return { success: false, errors: { name: "Name is required" } };
     }
-  | { success: false; errors: Record<string, string[]> };
 
-export async function createUser(
-  formData: FormData
-): Promise<CreateUserResponse> {
-  const rawData = {
-    name: formData.get("name")?.toString() || "",
-    surname: formData.get("surname")?.toString() || "",
-    country: formData.get("country")?.toString() || "",
-    birthday: formData.get("birthday")?.toString() || "",
-  };
+    const response = await fetch("http://localhost:3001/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, surname, country, birthday }),
+    });
 
-  const parsed = userSchema.safeParse(rawData);
+    if (!response.ok) {
+      const errorData = await response.json();
+      return {
+        success: false,
+        errors: errorData.errors || {
+          message: `Server error: ${response.status}`,
+        },
+      };
+    }
 
-  if (!parsed.success) {
-    return { success: false, errors: parsed.error.flatten().fieldErrors };
+    revalidatePath("/users");
+    return { success: true, name, surname, country, birthday };
+  } catch (error) {
+    console.error("Error creating user:", error);
+    return { success: false, errors: { message: "Failed to create user." } };
   }
-
-  await fetch("http://localhost:3001/users", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(parsed.data),
-  });
-
-  revalidatePath("/users");
-
-  return { success: true, data: parsed.data };
 }
