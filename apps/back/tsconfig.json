@@ -1,6 +1,7 @@
 {
   "extends": "../../packages/typescript-config/tsconfig.node.json",
   "compilerOptions": {
+    "types": ["vitest"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2022",
@@ -13,11 +14,14 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mosano-test-fullstack/*": ["../../packages/*/dist"]
+      "@mosano-test-fullstack/*": ["../../packages/*/dist"],
+      "@mosano-test-fullstack/vitest-config": [
+        "../../packages/vitest-config/vitest.config.ts"
+      ]
     },
     "declaration": true,
     "declarationMap": true
   },
-  "include": ["src/**/*", "src", "vitest.config.ts"],
+  "include": ["src/**/*.ts", "**/*.test.ts", "vitest.config.ts"],
   "exclude": ["node_modules", "dist"]
 }
