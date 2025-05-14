@@ -1,0 +1,5 @@
+backend 
+MONGO_USER=admin
+MONGO_PASS=senha123
+MONGO_DB=mosano-test
+PORT=3001

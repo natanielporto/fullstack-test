@@ -85,6 +85,7 @@ This requires Docker or equivalent installed on your machine. Running Backend wi
 
 1.  Navigate to the backend directory: `cd apps/back`
 2.  Start the backend and MongoDB using Docker Compose: `docker-compose up -d`
+3.  The .env info is on infos.txt on the root of the project
 
 ### Running the Application
 
