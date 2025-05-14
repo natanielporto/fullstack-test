@@ -1,64 +1,105 @@
-# Mosano Test Fullstack — Monorepo
+# Mosano Fullstack Test
 
-This repository is a **monorepo** managed with **NPM Workspaces + TurboRepo**, containing:
+This repository contains a full-stack application, structured as a monorepo, demonstrating a complete development workflow.
 
-- `apps/front` — Frontend built with **Next.js**, Zod, React, React Hook Form, etc.
-- `apps/back` — **Node.js API** using Express, TypeScript, and MongoDB (via Mongoose)
-- `packages/schemas` — Shared **Zod validation schemas** used across frontend and backend
+## Table of Contents
 
----
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [Monorepo Structure](#monorepo-structure)
+- [Dependencies](#dependencies)
+  - [Backend (apps/back)](#backend-appsback)
+  - [Frontend (apps/front)](#frontend-appsfront)
+  - [Shared Configuration (packages/vitest-config, packages/typescript-config)](#shared-configuration-packagesvitest-config-packagestypescript-config)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+  - [Running Tests](#running-tests)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Install dependencies
+## Overview
 
-To install all dependencies across all apps and packages:
+This creates a table of people, that can be added and displayed with Name, Surname, Country and Birthday.
 
-```bash
-npm install
-npm install --workspaces
-```
+## Architecture
 
-This will install everything into the root node_modules, using workspace symlinks.
+- **Monorepository:** Turborepo.
+- **Frontend:** NextJS, React, TypeScript, Tailwind, Next Actions, Next Form, Next Fetch.
+- **Backend:** Node.js, Express.js, TypeScript, Mongoose.
+- **Database:** MongoDB.
+- **Communication:** REST API.
+- **Front and Back validation:** Zod.
+- **Tests:** Vitest.
+- **Git Hooks:** Husky with validations and tests Pre-commit and Pre-push.
 
-To fully reset and reinstall:
+## Monorepo Structure
 
-```
-rm -rf node_modules package-lock.json
-npm install
-```
+- `apps/back`: Contains the backend application.
+- `apps/front`: Contains the frontend application.
+- `packages/eslint-config`: Contains shared ESLint configuration.
+- `packages/schemas`: Contains Zod validations.
+- `packages/vitest-config`: Contains shared Vitest configuration.
+- `packages/typescript-config`: Contains shared TypeScript configuration.
 
-Scripts
+### Backend (apps/back)
 
-```
-npm run dev (runs frontend and backend in parallel via Turbo)
-npm run dev --filter=front (runs the frontend only)
-npm run dev --filter=back (runs the backend only)
-npm run build (builds all workspaces)
-npm run lint (lints all workspaces)
-```
+- Node.js
+- Express.js
+- Mongoose
+- Vitest
 
-Shared Zod Schemas
-The @mosano-test-fullstack/schemas package is located at packages/schemas.
+### Frontend (apps/front)
 
-Example usage in frontend:
+- React
+- TypeScript
+- NextJS
+- TailwindCSS
+- Vitest
 
-```
-import { userSchema } from "@mosano-test-fullstack/schemas"
-```
+### Shared Configuration (packages/vitest-config, packages/typescript-config)
 
-Example usage in backend:
+- Vitest
+- TypeScript
+- ESLint
+- Schema validation
 
-```
-import { userSchema } from "@mosano-test-fullstack/schemas"
-```
+## Getting Started
 
-All types (e.g. UserSchema) are exported from the same module.
+You will need Git and Node installed.
 
-Debug / Check
-To check if dependencies are correctly linked:
+### Prerequisites
 
-```
-npm ls @mosano-test-fullstack/schemas
-```
+- Node.js (version >=22)
+- npm
 
-Conventions
-Use Zod schemas (userSchema, authSchema, etc.) across front and back.
+### Installation
+
+1.  Clone the repository: `git clone https://github.com/natanielporto/fullstack-test`
+2.  Install dependencies: `npm install`
+
+### MongoDB Container
+
+This requires Docker or equivalent installed on your machine. Running Backend with Docker Compose (Includes MongoDB)
+
+1.  Navigate to the backend directory: `cd apps/back`
+2.  Start the backend and MongoDB using Docker Compose: `docker-compose up -d`
+
+### Running the Application
+
+- Run all: `npm run dev`
+- Run the backend: `npm run dev --workspace=back`
+- Run the frontend: `npm run dev --workspace=front`
+
+### Running Tests
+
+- Run all tests: `npm run test`
+- Run backend tests: `npm run test --workspace=back`
+- Run frontend tests: `npm run test --workspace=front`
+
+### Running Git Hooks
+
+- Make alterations to the project
+- Run `git add .`
+- Run `git commit -m "your-custom-message-here"`
